@@ -1,6 +1,7 @@
 import { FC } from "react";
 import Head from "next/head"
-import { maxWidth } from "@mui/system";
+
+import { Navbar } from "../ui";
 
 
 interface Props {
@@ -25,11 +26,11 @@ export const ShopLayout:FC<Props> = ({ children, title, pageDescription, imageFu
                         <meta name="og:image" content={ imageFullUrl } />
                     )
                 }
-                
+
             </Head>
 
             <nav>
-                {/* TODO: Navbar */}
+                <Navbar />
             </nav>
 
             {/* TODO: Sidebar */}

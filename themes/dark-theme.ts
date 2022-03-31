@@ -1,18 +1,15 @@
 import { createTheme } from '@mui/material/styles';
 import { red,  } from '@mui/material/colors';
 
-
+// hay q cambiarle todos los colores al DarkTheme... hacer despues de tener la app lista
 export const DarkTheme = createTheme({
   palette: {
-    // mode: 'light', //original
-    mode: 'dark',
+    mode: 'light',
     primary: {
-      main: '#DFDFDF'
-      // main: '#c5c5c5'
-      // main: '#1E1E1E'//original
+      main: '#1E1E1E'
     },
     secondary: {
-      main: '#3A64D8' //azul
+      main: '#3A64D8'
     }
   },
   components: {
@@ -28,10 +25,7 @@ export const DarkTheme = createTheme({
       },
       styleOverrides: {
         root: {
-          // backgroundColor: 'white',  //original
-          // backgroundColor: '#ffffff',
-          backgroundColor: '#0e1a3a', //no se xq no funciona
-          // backgroundColor: 'red',
+          backgroundColor: 'white',
           height: 60
         },
       }
@@ -63,12 +57,13 @@ export const DarkTheme = createTheme({
       },
       styleOverrides: {
         root: {
+          backgroundColor: 'white',
+          color: 'black',
           textTransform: 'none',
           boxShadow: 'none',
           borderRadius: 10,
           ":hover": {
-            // backgroundColor: 'rgba(0,0,0,0.05)', //original
-            backgroundColor: 'rgba(255, 255, 255, 0.05);',
+            backgroundColor: 'rgba(0,0,0,0.05)',
             transition: 'all 0.3s ease-in-out'
           }
         }
