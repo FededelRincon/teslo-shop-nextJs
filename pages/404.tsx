@@ -1,4 +1,5 @@
-import { Box, Typography } from "@mui/material"
+import NextLink from 'next/link';
+import { Box, Link, Typography } from "@mui/material";
 
 import { ShopLayout } from "../components/layouts"
 
@@ -10,11 +11,24 @@ const Custom404Page = () => {
                 display='flex' 
                 justifyContent='center' 
                 alignItems='center' 
-                height='calc(100vh - 200px)'
-                sx={{ flexDirection:{ xs: 'column', sm: 'row'} }}
+                height='calc(90vh - 200px)'
+                sx={{ flexDirection:{ xs: 'column', sm: 'row' } }}
+                // sx={{ flexDirection:{ xs: 'column', sm: 'row', backgroundColor:'grey' } }}
             >
                 <Typography variant='h1' component='h1' fontSize={75} fontWeight={200} >404 |</Typography>
-                <Typography marginLeft={2}>La pagina solicitada no existe</Typography>
+                <Typography marginLeft={2}>La pagina solicitada no existe. </Typography>
+            </Box>
+            <Box
+                display='flex' 
+                justifyContent='center' 
+                alignItems='center' 
+            >
+                {/* TODO: bonton de volver, ver si esta ok, o no */}
+                <NextLink href='/' passHref>
+                    <Link typography='h4' color='secondary' >
+                        Regresar
+                    </Link>
+                </NextLink>
             </Box>
         </ShopLayout>
     )
