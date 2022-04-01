@@ -2,7 +2,7 @@ import '../styles/globals.css';
 import type { AppProps } from 'next/app';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 
-import { lightTheme, DarkTheme } from '../themes';
+import { lightTheme } from '../themes';
 
 
 function MyApp({ Component, pageProps }: AppProps) {
