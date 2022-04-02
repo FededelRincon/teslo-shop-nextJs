@@ -9,18 +9,13 @@ const RegisterPage = () => {
             <Box sx={{ width: 350, padding:'10px 20px'}}>
                 <Grid container spacing={2} >
                     <Grid item xs={12}>
-                        <Typography variant='h1' component="h1">Registrarse</Typography>
+                        <Typography variant='h1' component="h1">Crear Cuenta</Typography>
                     </Grid>
 
-                    {/* Nombre */}
+                    {/* Nombre completo */}
                     <Grid item xs={12}>
-                        <TextField label="Nombre" variant="filled" fullWidth />
+                        <TextField label="Nombre completo" variant="filled" fullWidth />
                     </Grid>
-
-                    {/* Apellido */}
-                    {/* <Grid item xs={12}>
-                        <TextField label="Apellido" variant="filled" fullWidth />
-                    </Grid> */}
 
                     {/* correo */}
                     <Grid item xs={12}>
