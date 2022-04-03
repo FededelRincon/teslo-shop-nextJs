@@ -36,6 +36,10 @@ const productSchema = new Schema({
 });
 
 
+productSchema.index({ title: 'text', tags: 'text' }); //une titulo y tags para q al hacer busquedas al usar una sola palabra, busque en las 2 columnas
+
+
+
 const Product: Model<IProduct> = mongoose.models.Product || model('Product', productSchema); //mongoose agrega automaticamente la S
 
 export default Product;

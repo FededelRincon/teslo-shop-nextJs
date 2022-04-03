@@ -23,7 +23,7 @@ const Custom404Page = () => {
                 justifyContent='center' 
                 alignItems='center' 
             >
-                {/* TODO: bonton de volver, ver si esta ok, o no */}
+                {/* TODO: Boton de regresar, en paginas pequeñas queda encima del 404 */}
                 <NextLink href='/' passHref>
                     <Link typography='h4' color='secondary' >
                         Regresar
