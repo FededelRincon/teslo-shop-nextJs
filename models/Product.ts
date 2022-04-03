@@ -10,7 +10,7 @@ const productSchema = new Schema({
     sizes: [{
         type: String,
         enum: {
-            values: ['XS','S','M','L','XL','XXL, XXXL'],
+            values: ['XS','S','M','L','XL','XXL', 'XXXL'],
             message: '{VALUE} no es un tamaño valido',
         }
     }],
@@ -32,11 +32,9 @@ const productSchema = new Schema({
         }
     },
 },{
-    timestamps: true
+    timestamps: true    //esto crea el createdAt y el updatedAt
 });
 
-
-// TODO: Crear indice de Mongo
 
 const Product: Model<IProduct> = mongoose.models.Product || model('Product', productSchema); //mongoose agrega automaticamente la S
 
