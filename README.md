@@ -3,6 +3,17 @@ Para correr localmente, se necesita la base de datos
 ```
 docker-compose up -d
 ```
+
+Para listar los contenedores
+```
+docker ps - a
+```
+
+Para detener el contenedor
+```
+docker stop teslo-database
+```
+
 * El -d, signitica __detached__
 
 
