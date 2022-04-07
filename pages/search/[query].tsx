@@ -1,28 +1,43 @@
 import type { NextPage, GetServerSideProps } from 'next';
-import { Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 
 import { ShopLayout } from '../../components/layouts';
 
 import { ProductList } from '../../components/products';
 
-import { dbProducts } from '../../database';
+import { db, dbProducts } from '../../database';
 import { IProduct } from '../../interfaces/products';
 
 
 
 interface Props {
     products : IProduct[];
+    foundProducts: boolean;
+    query: string;
 }
 
 
-const SearchPage: NextPage<Props> = ({ products }) => {
+const SearchPage: NextPage<Props> = ({ products, foundProducts, query }) => {
 
     
     return (
         <>
             <ShopLayout title={'Teslo-Shop - Search'} pageDescription={'Encuentra los mejores productos de Teslo aqui'} >
-                <Typography variant='h1' component='h1'>Buscar Producto</Typography>
-                <Typography variant='h2' sx={{ mb: 1 }}>ABC --- 1 2 3</Typography>
+                <Typography variant='h1' component='h1'>Buscar Productos</Typography>
+
+                {
+                    foundProducts
+                        ? (
+                            <Typography variant='h2' sx={{ mb: 1 }}>Termino: { query }</Typography>
+                            )
+                        : (
+                            <Box display='flex' sx={{ mb: 3}}>
+                                <Typography variant='h2' sx={{ mb: 1 }}>No encontramos ningun producto con la busqueda</Typography>
+                                <Typography variant='h2' sx={{ ml: 1 }} color="secondary">"{ query }".</Typography>
+                            </Box>
+                        )
+                }
+
 
                 <ProductList 
                     products={ products } 
@@ -50,12 +65,19 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
 
 
     let products = await dbProducts.getProductsByTerm( query );
-    //TODO: products podria ser vacio... retornar otros productos si no hay nada...
-
+    const foundProducts = products.length > 0;
+    
+    if ( ! foundProducts ) {
+        products = await dbProducts.getProductsByTerm('shirt'); //x si quisiera devolver algo puntual. Por ej el modelo nuevo de algo
+        // products = await dbProducts.getAllProducts();   //sino devolve todos los productos
+    }
+    
     
     return {
         props: {
-            products
+            products,
+            foundProducts,
+            query
         }
     }
 }
