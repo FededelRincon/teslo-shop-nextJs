@@ -28,7 +28,7 @@ export const CartProvider:FC = ({ children }) => {
         } catch (error) {
             dispatch({ type: '[Cart] - LoadCart from cookies | storage', payload: [] });    //por si alguien manipulo la cookie manualmente y no se puede volver a recuperar
         }
-    }, [])
+    }, []);
     
 
     useEffect(() => {
@@ -59,7 +59,10 @@ export const CartProvider:FC = ({ children }) => {
         });
 
         dispatch({ type: '[Cart] - Update products in cart', payload: updatedProducts });
+    }
 
+    const updateCartQuantity = ( product: ICartProduct ) => {
+        dispatch({ type: '[Cart] - Change cart quantity', payload: product })
     }
 
     return (
@@ -67,7 +70,8 @@ export const CartProvider:FC = ({ children }) => {
             ...state,
 
             // Methods
-            addProductToCart
+            addProductToCart,
+            updateCartQuantity
         }}>
             { children }
         </CartContext.Provider>
