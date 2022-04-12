@@ -7,7 +7,7 @@ import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
 
-import { UiContext } from '../../context';
+import { CartContext, UiContext } from '../../context';
 
 
 
@@ -15,6 +15,7 @@ export const Navbar = () => {
 
     const { push, asPath } = useRouter();
     const { toggleSideMenu } = useContext(UiContext);
+    const { numberOfItems } = useContext(CartContext);
 
     const [searchTerm, setSearchTerm] = useState('');
     const [isSearchVisible, setIsSearchVisible] = useState(false);
@@ -112,7 +113,7 @@ export const Navbar = () => {
                 <NextLink href='/cart' passHref>
                     <Link>
                         <IconButton>
-                            <Badge badgeContent={2} color='secondary'> {/* son los numeritos arriba del carrito */}
+                            <Badge badgeContent={ numberOfItems> 9 ? '+9' : numberOfItems } color='secondary'> {/* son los numeritos arriba del carrito */}
                                 <ShoppingCartOutlinedIcon />
                             </Badge>
                         </IconButton>
