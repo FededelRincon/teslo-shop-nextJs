@@ -21,6 +21,7 @@ const loginPage = () => {
 
     const router = useRouter();
     const { loginUser } = useContext( AuthContext );
+    
     const { register, handleSubmit, formState: { errors } } = useForm<FormData>();
     const [ showError, setShowError ] = useState( false );
 
