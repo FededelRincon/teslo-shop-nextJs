@@ -21,6 +21,7 @@ const loginPage = () => {
 
     const router = useRouter();
     const { loginUser } = useContext( AuthContext );
+    
     const { register, handleSubmit, formState: { errors } } = useForm<FormData>();
     const [ showError, setShowError ] = useState( false );
 
@@ -38,8 +39,8 @@ const loginPage = () => {
             return;
         }
 
-        //TODO: navegar a la pantalla previa a hacer el login
-        router.replace('/');
+        const destination = router.query.p?.toString() || '/'
+        router.replace( destination );
     }
 
     return (
@@ -107,7 +108,7 @@ const loginPage = () => {
 
                         {/* no tenes cuenta? */}
                         <Grid item xs={12} display='flex' justifyContent='end'>
-                            <NextLink href='/auth/register' passHref>
+                            <NextLink href={ router.query.p ? `/auth/register?p=${ router.query.p }` : 'auth/register' } passHref>
                                 <Link underline='always' >
                                     ¿ No tienes cuenta ?
                                 </Link>

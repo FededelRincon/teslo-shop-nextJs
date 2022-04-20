@@ -3,6 +3,7 @@ Para correr localmente, se necesita la base de datos
 ```
 docker-compose up -d
 ```
+* El -d, signitica __detached__
 
 Para listar los contenedores
 ```
@@ -14,7 +15,6 @@ Para detener el contenedor
 docker stop teslo-database
 ```
 
-* El -d, signitica __detached__
 
 
 * MongoDB URL Local:
