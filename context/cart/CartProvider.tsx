@@ -13,7 +13,7 @@ export interface CartState {
     tax: number;
     total: number;
 
-    shippingAddres?: ShippingAddress;
+    shippingAddress?: ShippingAddress;
 }
 
 
@@ -36,7 +36,7 @@ const CART_INITIAL_STATE: CartState = {
     subTotal: 0,
     tax: 0,
     total: 0,
-    shippingAddres: undefined,
+    shippingAddress: undefined,
 }
 
 
@@ -59,7 +59,7 @@ export const CartProvider:FC = ({ children }) => {
 
     useEffect(() => {
         if( Cookie.get('firstName') ){ //si no esta el firstName los otros tampoco estan, xq no se validan todos
-            const shippingAddres = {
+            const shippingAddress = {
                 firstName: Cookie.get('firstName') || '',
                 lastName:  Cookie.get('lastName') || '',
                 address:   Cookie.get('address') || '',
@@ -70,7 +70,7 @@ export const CartProvider:FC = ({ children }) => {
                 phone:     Cookie.get('phone') || '',
             }
     
-            dispatch({ type: '[Cart] - LoadAddress from Cookies', payload: shippingAddres })
+            dispatch({ type: '[Cart] - LoadAddress from Cookies', payload: shippingAddress })
         }
 
     }, [])

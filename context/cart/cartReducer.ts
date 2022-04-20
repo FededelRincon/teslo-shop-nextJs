@@ -72,7 +72,7 @@ export const cartReducer = ( state:CartState, action: CartActionType ): CartStat
         case '[Cart] - LoadAddress from Cookies':
             return {
                 ...state,
-                shippingAddres: action.payload
+                shippingAddress: action.payload
             }
 
         default:

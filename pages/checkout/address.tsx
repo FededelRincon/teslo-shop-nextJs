@@ -142,10 +142,11 @@ const addressPage = () => {
                     <Grid item xs={12} sm={6} >
                         <FormControl fullWidth>
                             <TextField
+                                key={Cookies.get('country') || countries[0].code}
                                 select
                                 variant="filled"
                                 label="Pais"
-                                defaultValue={ countries[0].code }
+                                defaultValue={ Cookies.get('country') || countries[0].code }
                                 { ...register('country',{
                                     required: 'Este campo es requerido',
                                 })}
