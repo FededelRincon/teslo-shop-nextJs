@@ -1,6 +1,7 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import NextLink from 'next/link';
-import { Box, Button, Card, CardContent, Divider, Grid, Link, Typography } from '@mui/material';
+import { Box, Button, Card, CardContent, Divider, Grid, Link, TextField, Typography } from '@mui/material';
+import { useForm } from "react-hook-form";
 
 import { CartContext } from '../../context';
 import { ShopLayout } from "../../components/layouts"
@@ -8,7 +9,17 @@ import { CartList, OrderSummary } from "../../components/cart";
 import { countries } from '../../utils';
 
 
+type FormData = {
+    name: string,
+    card: number,
+    exp: number,
+    cvv: number,
+};
+
 const SummaryPage = () => {
+
+    const { register, handleSubmit, formState: { errors } } = useForm<FormData>();
+    const [showForm, setShowForm] = useState(false)
 
     const { shippingAddress, numberOfItems } = useContext(CartContext);
     if(!shippingAddress) {
@@ -16,6 +27,11 @@ const SummaryPage = () => {
     }
 
     const { firstName, lastName, address, address2 = '', city, country, phone, zip } = shippingAddress;
+
+
+    const onLoginUser = async ( data: FormData) => {
+        console.log(data)
+    }
 
     return (
         <ShopLayout title='Resumen de orden' pageDescription={"Resumen de la orden"}>
@@ -59,11 +75,109 @@ const SummaryPage = () => {
 
                             <OrderSummary />
 
-                            <Box sx={{ mt:3 }}>
-                                <Button color="secondary" className="circular-btn" fullWidth>
-                                    Confirmar Orden
-                                </Button>
-                            </Box>
+                            <Divider sx={{my:1, mb:2}} />
+
+                            {
+                                showForm ? (
+                                    <form onSubmit={ handleSubmit(onLoginUser) } noValidate >
+
+                                        {/* Name */}
+                                        <Grid item xs={12}>
+                                            <TextField 
+                                                label="Nombre completo" 
+                                                variant="filled" 
+                                                fullWidth 
+                                                autoComplete='off'
+                                                { ...register('name', {
+                                                    required: 'Este campo es requerido',
+                                                    minLength: { value: 6, message: 'Minimo de 6 caracteres'},
+                                                    maxLength: { value: 20, message: 'Maximo de 20 caracteres'},
+                                                })}
+                                                error = { !!errors.name }
+                                                helperText={ errors.name?.message }
+                                            />
+                                        </Grid>
+                                        
+                                        {/* Card */}
+                                        <Grid item xs={12}>
+                                            <TextField 
+                                                type="number"
+                                                label="Numero Tarjeta" 
+                                                variant="filled" 
+                                                fullWidth 
+                                                autoComplete='off'
+                                                { ...register('card', {
+                                                    required: 'Este campo es requerido',
+                                                    minLength: { value: 16, message: 'Minimo de 12 caracteres'},
+                                                })}
+                                                error = { !!errors.card }
+                                                helperText={ errors.card?.message }
+                                            />
+                                        </Grid>
+
+                                        {/* exp */}
+                                        <Grid item xs={12}>
+                                            <TextField 
+                                                type="number"
+                                                label="Fecha Vencimiento" 
+                                                variant="filled" 
+                                                fullWidth 
+                                                autoComplete='off'
+                                                { ...register('exp', {
+                                                    required: 'Este campo es requerido',
+                                                    minLength: { value: 5, message: 'Minimo de 5 caracteres'},
+                                                    maxLength: { value: 5, message: 'Maximo de 5 caracteres'},
+                                                })}
+                                                error = { !!errors.exp }
+                                                helperText={ errors.exp?.message }
+                                            />
+                                        </Grid>
+
+                                        {/* cvv */}
+                                        <Grid item xs={12}>
+                                            <TextField 
+                                                type="number"
+                                                label="Numero seguridad" 
+                                                variant="filled" 
+                                                fullWidth 
+                                                autoComplete='off'
+                                                { ...register('cvv', {
+                                                    required: 'Este campo es requerido',
+                                                    minLength: { value: 3, message: 'Minimo de 3 caracteres'},
+                                                    maxLength: { value: 3, message: 'Maximo de 3 caracteres'},
+                                                })}
+                                                error = { !!errors.cvv }
+                                                helperText={ errors.cvv?.message }
+                                            />
+                                        </Grid>
+
+                                        <Box sx={{ mt:3 }}>
+                                            <Button 
+                                                color="secondary" 
+                                                className="circular-btn" 
+                                                fullWidth
+                                                type="submit"
+                                            >
+                                                Pagar
+                                            </Button>
+                                        </Box>
+                                    </form>
+
+                                ) : (
+                                    <Box sx={{ mt:3 }}>
+                                        <Button 
+                                            onClick={ () => setShowForm( !showForm ) }
+                                            color="secondary" 
+                                            className="circular-btn" 
+                                            fullWidth
+                                            type="submit"
+                                        >
+                                            Abonar orden
+                                        </Button>
+                                    </Box>
+                                )
+                            }
+
 
                         </CardContent>
                     </Card>
