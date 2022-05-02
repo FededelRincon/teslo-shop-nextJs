@@ -3,10 +3,8 @@ import { useContext, useState } from "react"
 import { AuthContext, UiContext } from "../../context"
 
 import { Box, Divider, Drawer, IconButton, Input, InputAdornment, List, ListItem, ListItemIcon, ListItemText, ListSubheader } from "@mui/material"
-import { AccountCircleOutlined, AdminPanelSettings, CategoryOutlined, ConfirmationNumberOutlined, EscalatorWarningOutlined, FemaleOutlined, LoginOutlined, MaleOutlined, SearchOutlined, VpnKeyOutlined } from "@mui/icons-material"
+import { AccountCircleOutlined, AdminPanelSettings, CategoryOutlined, EscalatorWarningOutlined, FemaleOutlined, LoginOutlined, MaleOutlined, SearchOutlined, VpnKeyOutlined } from "@mui/icons-material"
 import { useRouter } from "next/router"
-
-// TODO: si por lo que sea tengo problemas, en clase 176 esta el codigo listo para sobreescribir este ;)
 
 
 export const SideMenu = () => {
@@ -70,13 +68,6 @@ export const SideMenu = () => {
                                         <AccountCircleOutlined/>
                                     </ListItemIcon>
                                     <ListItemText primary={'Perfil'} />
-                                </ListItem>
-
-                                <ListItem button>
-                                    <ListItemIcon>
-                                        <ConfirmationNumberOutlined/>
-                                    </ListItemIcon>
-                                    <ListItemText primary={'Mis Ordenes'} />
                                 </ListItem>
                             </>
                         )
@@ -153,12 +144,6 @@ export const SideMenu = () => {
                                         <CategoryOutlined/>
                                     </ListItemIcon>
                                     <ListItemText primary={'Productos'} />
-                                </ListItem>
-                                <ListItem button>
-                                    <ListItemIcon>
-                                        <ConfirmationNumberOutlined/>
-                                    </ListItemIcon>
-                                    <ListItemText primary={'Ordenes'} />
                                 </ListItem>
 
                                 <ListItem button>
