@@ -148,6 +148,12 @@ export const CartProvider:FC = ({ children }) => {
         })
     }
 
+    const clearCart = () => {
+        dispatch({
+            type: '[Cart] - Clear Cart'
+        })
+    }
+
 
     return (
         <CartContext.Provider value={{
@@ -158,6 +164,7 @@ export const CartProvider:FC = ({ children }) => {
             removeCartProduct,
             updateCartQuantity,
             updateAddress,
+            clearCart, 
         }}>
             { children }
         </CartContext.Provider>

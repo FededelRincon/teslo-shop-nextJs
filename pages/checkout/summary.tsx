@@ -1,7 +1,8 @@
 import { useContext, useState } from 'react';
 import NextLink from 'next/link';
-import { Box, Button, Card, CardContent, Divider, Grid, Link, TextField, Typography } from '@mui/material';
+import { Box, Button, Card, CardContent, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Divider, Grid, Link, TextField, Typography } from '@mui/material';
 import { useForm } from "react-hook-form";
+import { useRouter } from "next/router";
 
 import { CartContext } from '../../context';
 import { ShopLayout } from "../../components/layouts"
@@ -18,10 +19,13 @@ type FormData = {
 
 const SummaryPage = () => {
 
+    const router = useRouter();
     const { register, handleSubmit, formState: { errors } } = useForm<FormData>();
+    const [cardNumber, setCardNumber] = useState(0);
     const [showForm, setShowForm] = useState(false)
+    const [open, setOpen] = useState(false)
 
-    const { shippingAddress, numberOfItems } = useContext(CartContext);
+    const { shippingAddress, numberOfItems, total, clearCart } = useContext(CartContext);
     if(!shippingAddress) {
         return <></>
     }
@@ -29,9 +33,27 @@ const SummaryPage = () => {
     const { firstName, lastName, address, address2 = '', city, country, phone, zip } = shippingAddress;
 
 
-    const onLoginUser = async ( data: FormData) => {
-        console.log(data)
+    const onPayCart = async ( data: FormData) => {
+        setCardNumber(data.card)
+        handleClickOpen();
     }
+
+    const handleClickOpen = () => {
+        setOpen(true);
+    };
+
+    const handleClosePositive = () => {
+        setOpen(false);
+        clearCart();
+        router.push('/successfulPurchase');
+        // console.log('sujeto SI quiere abonar');
+    };
+    
+    const handleCloseNegative = () => {
+        setOpen(false);
+        // console.log('sujeto NO quiere abonar');
+    };
+    
 
     return (
         <ShopLayout title='Resumen de orden' pageDescription={"Resumen de la orden"}>
@@ -79,7 +101,7 @@ const SummaryPage = () => {
 
                             {
                                 showForm ? (
-                                    <form onSubmit={ handleSubmit(onLoginUser) } noValidate >
+                                    <form onSubmit={ handleSubmit(onPayCart) } noValidate >
 
                                         {/* Name */}
                                         <Grid item xs={12}>
@@ -178,6 +200,32 @@ const SummaryPage = () => {
                                 )
                             }
 
+                            <div>
+                                <Button variant="outlined" onClick={handleClickOpen}>
+                                    Open alert dialog
+                                </Button>
+                                <Dialog
+                                    open={open}
+                                    onClose={handleCloseNegative || handleClosePositive }
+                                    aria-labelledby="alert-dialog-title"
+                                    aria-describedby="alert-dialog-description"
+                                >
+                                    <DialogTitle id="alert-dialog-title">
+                                    {"¿Realmente desea abonar con esta tarjeta?"}
+                                    </DialogTitle>
+                                    <DialogContent>
+                                    <DialogContentText id="alert-dialog-description">
+                                        El monto total a pagar es ${total} y sera abonado con la tarjeta { cardNumber }
+                                    </DialogContentText>
+                                    </DialogContent>
+                                    <DialogActions>
+                                        <Button onClick={handleCloseNegative}>No pagar</Button>
+                                        <Button onClick={handleClosePositive} autoFocus>
+                                            Pagar
+                                        </Button>
+                                    </DialogActions>
+                                </Dialog>
+                            </div>
 
                         </CardContent>
                     </Card>
