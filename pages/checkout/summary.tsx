@@ -108,7 +108,7 @@ const SummaryPage = () => {
                                                 autoComplete='off'
                                                 { ...register('card', {
                                                     required: 'Este campo es requerido',
-                                                    minLength: { value: 16, message: 'Minimo de 12 caracteres'},
+                                                    minLength: { value: 16, message: 'Minimo de 16 caracteres'},
                                                 })}
                                                 error = { !!errors.card }
                                                 helperText={ errors.card?.message }

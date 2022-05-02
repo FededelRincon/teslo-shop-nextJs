@@ -153,7 +153,7 @@ const addressPage = () => {
                                 error = { !!errors.country }
                                 // helperText={ errors.country?.message }
                             >
-                                <MenuItem value={0}>-- Seleccione una opcion --</MenuItem>
+                                {/* <MenuItem value={0}>-- Seleccione una opcion --</MenuItem> */}
                                 {
                                     countries.map( country => (
                                         
