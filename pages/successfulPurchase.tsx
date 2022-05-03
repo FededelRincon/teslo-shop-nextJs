@@ -1,11 +1,33 @@
 import NextLink from 'next/link';
 import { Box, Link, Typography } from "@mui/material";
+import { useRouter } from 'next/router';
 
 import { ShopLayout } from "../components/layouts"
+import { useContext, useEffect } from 'react';
+import { AuthContext } from '../context';
 
 
 const SuccessfullPurchase = () => {
 
+    const { isLoggedIn } = useContext( AuthContext );
+    const router = useRouter();
+
+    // si no esta logeado q lo saque de esta pagina
+    useEffect(() => {
+        if(!isLoggedIn) {
+            router.push('/');
+        }
+    }, [])
+
+    // que directamente no renderize nada de nada
+    if( !isLoggedIn ){
+        return (
+            <>
+            </>
+        )
+
+    }
+    
     return (
         <ShopLayout title="successful purchase" pageDescription="Compra exitosa">
             <Box 
