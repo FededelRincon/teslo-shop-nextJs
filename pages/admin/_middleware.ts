@@ -5,20 +5,20 @@ import { getToken } from 'next-auth/jwt';
 
 export async function middleware( req: NextRequest | any, ev: NextFetchEvent ) {
 
-    const session: any = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
-    const { origin } = req.nextUrl
+    // const session: any = await getToken({ req, secret: process.env.NEXTAUTH_SECRET });
+    // const { origin } = req.nextUrl
 
-    if ( !session ) {
-        const requestedPage = req.page.name;
-        // return NextResponse.redirect(`${origin}/auth/login?p=${ requestedPage }`);
-        return NextResponse.redirect(`${origin}/`);
-    }
+    // if ( !session ) {
+    //     const requestedPage = req.page.name;
+    //     // return NextResponse.redirect(`${origin}/auth/login?p=${ requestedPage }`);
+    //     return NextResponse.redirect(`${origin}/`);
+    // }
 
-    const validRoles = ['admin','super-user','SEO'];
+    // const validRoles = ['admin','super-user','SEO'];
 
-    if ( !validRoles.includes( session.user.role ) ) {
-        return NextResponse.redirect('/');
-    }
+    // if ( !validRoles.includes( session.user.role ) ) {
+    //     return NextResponse.redirect('/');
+    // }
 
 
     return NextResponse.next();
