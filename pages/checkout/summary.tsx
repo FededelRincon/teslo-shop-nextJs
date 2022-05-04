@@ -43,15 +43,16 @@ const SummaryPage = () => {
     };
 
     const handleClosePositive = () => {
+        // console.log('sujeto SI quiere abonar');
         setOpen(false);
         clearCart();
-        router.push('/successfulPurchase');
-        // console.log('sujeto SI quiere abonar');
+        alert('Pago realizado con exito, cheeque su email por favor')
+        router.push('/');
     };
     
     const handleCloseNegative = () => {
-        setOpen(false);
         // console.log('sujeto NO quiere abonar');
+        setOpen(false);
     };
     
 
