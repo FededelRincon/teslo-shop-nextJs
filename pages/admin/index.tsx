@@ -69,7 +69,7 @@ const DashboardPage = () => {
                 />
 
                 <SummaryTile 
-                    title={ `${refreshIn} sg` } 
+                    title={ `${refreshIn} Segundos` } 
                     subTitle={ 'Actualizacion en:' } 
                     icon={ <AccessTimeOutlined color="secondary" sx={{ fontSize: 40 }} /> } 
                 />
