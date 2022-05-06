@@ -8,15 +8,23 @@ import { SummaryTile } from '../../components/admin'
 import { AuthContext } from '../../context';
 
 
+interface PerfilData {
+    _id:       string;
+    name:      string;
+    email:     string;
+    role:      string;
+    __v:       number;
+    createdAt: string;
+    updatedAt: string;
+}
+
 const DashboardPage = () => {
 
     const { user } = useContext(AuthContext)
 
     // swr haber si puedo usar condiciones de busqueda y mandar el mail por aca desde el context
-    const { data, error } = useSWR<any>('/api/admin/perfil')
+    const { data, error } = useSWR<PerfilData[]>('/api/admin/perfil')
 
-
-    
     if( !error && !data ) { //si no hay error pero tampoco esta la data disponible para mostrar 
         return (<></>)
     }
@@ -27,7 +35,9 @@ const DashboardPage = () => {
     }
     
     // filtro la busqueda, para el usuario en especifico
-    const dataUser = data!.filter( u => u.email === user?.email )   ////no tengo idea como sacar este "error" de typescript...
+    const dataUser = data!.filter( (u:PerfilData) => u.email === user?.email )   
+    // Parameter 'u' implicitly has an 'any' type
+    ////no tengo idea como sacar este "error" de typescript...
 
     const { createdAt, email, name, role } = dataUser[0]
 
