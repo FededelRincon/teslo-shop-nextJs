@@ -8,6 +8,7 @@ import { DriveFileRenameOutline, SaveOutlined, UploadOutlined } from '@mui/icons
 import { AdminLayout } from '../../../components/layouts'
 import { IProduct } from '../../../interfaces';
 import { dbProducts } from '../../../database';
+import { tesloApi } from '../../../api';
 
 
 const validTypes  = ['shirts','pants','hoodies','hats']
@@ -36,6 +37,7 @@ interface Props {
 const ProductAdminPage:FC<Props> = ({ product }) => {
 
     const [newTagValue, setNewTagValue] = useState('');
+    const [isSaving, setIsSaving] = useState(false);
     const { register, handleSubmit, formState:{ errors }, getValues, setValue, watch } = useForm<FormData>({
         defaultValues: product
     })
@@ -84,8 +86,34 @@ const ProductAdminPage:FC<Props> = ({ product }) => {
         setValue('tags', updatedTags, { shouldValidate: true })
     }
 
-    const onSubmitForm = ( form: FormData ) => {
-        console.log({ form })
+    const onSubmitForm = async( form: FormData ) => {
+        
+        if ( form.images.length < 2 ) return alert('Mínimo 2 imagenes');
+
+        setIsSaving(true);  //para evitar doble posteo
+
+        try {
+            const { data } = await tesloApi({
+                url: '/admin/products',
+                method: 'PUT',
+                // method: form._id ? 'PUT': 'POST',  // si tenemos un _id, entonces actualizar, si no crear
+                data: form
+            });
+
+            console.log({data});
+            if ( !form._id ) {
+                // TODO: recargar el navegador
+                // router.replace(`/admin/products/${ form.slug }`);
+            } else {
+                setIsSaving(false)
+            }
+
+
+        } catch (error) {
+            console.log(error);
+            setIsSaving(false);
+        }
+
     }
 
     return (
@@ -101,7 +129,8 @@ const ProductAdminPage:FC<Props> = ({ product }) => {
                         startIcon={ <SaveOutlined /> }
                         sx={{ width: '150px' }}
                         type="submit"
-                        >
+                        disabled={ isSaving }
+                    >
                         Guardar
                     </Button>
                 </Box>
