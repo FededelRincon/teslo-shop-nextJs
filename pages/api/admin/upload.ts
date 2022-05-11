@@ -39,10 +39,7 @@ const saveFile = async( file: formidable.File ): Promise<string> => {
     // return;
 
     // usando cloudinary
-    const { secure_url } = await cloudinary.uploader.upload( file.filepath, { 
-        folder: "teslo-store/", 
-        public_id: `${ file.originalFilename }`
-    });
+    const { secure_url } = await cloudinary.uploader.upload( file.filepath );
     return secure_url;
 
 }
