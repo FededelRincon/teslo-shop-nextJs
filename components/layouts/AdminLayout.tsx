@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Box, Typography } from "@mui/material";
 
-import { SideMenu } from "../ui";
+import { Footer, SideMenu } from "../ui";
 import { AdminNavbar } from "../admin";
 
 
@@ -19,7 +19,6 @@ export const AdminLayout:FC<Props> = ({ children, title, subTitle, icon }) => {
                 <AdminNavbar />
             </nav>
 
-            {/* TODO: Sidebar */}
             <SideMenu />
 
             <main style={{
@@ -42,6 +41,7 @@ export const AdminLayout:FC<Props> = ({ children, title, subTitle, icon }) => {
 
             </main>
 
+            <Footer />
 
         </>
     )

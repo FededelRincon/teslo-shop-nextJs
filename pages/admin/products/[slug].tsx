@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
 
 import { Box, Button, capitalize, Card, CardActions, CardMedia, Checkbox, Chip, Divider, FormControl, FormControlLabel, FormGroup, FormLabel, Grid, ListItem, Paper, Radio, RadioGroup, TextField } from '@mui/material';
-import { DriveFileRenameOutline, SaveOutlined, UploadOutlined } from '@mui/icons-material';
+import { ArrowBackOutlined, DriveFileRenameOutline, SaveOutlined, UploadOutlined } from '@mui/icons-material';
 
 import { AdminLayout } from '../../../components/layouts'
 import { IProduct } from '../../../interfaces';
@@ -134,7 +134,7 @@ const ProductAdminPage:FC<Props> = ({ product }) => {
                 data: form
             });
 
-            console.log({data});
+            // console.log({data});
             if ( !form._id ) {
                 router.replace(`/admin/products/${ form.slug }`);
             } else {
@@ -151,7 +151,7 @@ const ProductAdminPage:FC<Props> = ({ product }) => {
 
     return (
         <AdminLayout 
-            title={'Producto'} 
+            title={' Producto'} 
             subTitle={`Editando: ${ product.title }`}
             icon={ <DriveFileRenameOutline /> }
         >
@@ -395,6 +395,20 @@ const ProductAdminPage:FC<Props> = ({ product }) => {
 
                 </Grid>
             </form>
+
+            <Box
+                sx={{ position: 'fixed', bottom: 20, right: '44%' }}
+            >
+                <Button 
+                    color="secondary"
+                    startIcon={ <ArrowBackOutlined /> }
+                    sx={{ width: '150px' }}
+                    onClick={ () => router.push('/admin/products') }
+                >
+                    Volver
+                </Button>
+            </Box>
+
         </AdminLayout>
     )
 }

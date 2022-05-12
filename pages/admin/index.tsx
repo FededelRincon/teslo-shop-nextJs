@@ -30,7 +30,7 @@ const DashboardPage = () => {
     }
 
     if( error ){
-        console.log(error)
+        // console.log(error)
         return <Typography>Error al cargar la informacion</Typography>
     }
 
