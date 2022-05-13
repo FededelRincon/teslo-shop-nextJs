@@ -17,7 +17,7 @@ type FormData = {
 };
 
 
-const loginPage = () => {
+const LoginPage = () => {
 
     const router = useRouter();
     const { loginUser } = useContext( AuthContext );
@@ -123,4 +123,4 @@ const loginPage = () => {
     )
 }
 
-export default loginPage
+export default LoginPage

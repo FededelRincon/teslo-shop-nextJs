@@ -35,7 +35,7 @@ const getAddressFromCookies = ():FormData => {
 
 }
 
-const addressPage = () => {
+const AddressPage = () => {
 
     const router = useRouter();
     const { updateAddress } = useContext( CartContext );
@@ -228,4 +228,4 @@ const addressPage = () => {
 // }
 
 
-export default addressPage
+export default AddressPage
