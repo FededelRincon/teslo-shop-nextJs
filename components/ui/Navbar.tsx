@@ -114,7 +114,9 @@ export const Navbar = () => {
 
                 <NextLink href='/cart' passHref>
                     <Link>
-                        <IconButton>
+                        <IconButton
+                            sx={{ paddingLeft: '5px', paddingRight: '20px' }}
+                        >
                             <Badge badgeContent={ numberOfItems> 9 ? '+9' : numberOfItems } color='secondary'> {/* son los numeritos arriba del carrito */}
                                 <ShoppingCartOutlinedIcon />
                             </Badge>
