@@ -118,6 +118,12 @@ const LoginPage = () => {
 
                     </Grid>
                 </Box>
+                <Box sx={{ opacity: '0.5', marginTop: '20px', marginLeft: '35px', padding:'15px 20px 15px 20px', backgroundColor: '#8B0000', color: '#B5B2B2', position: 'absolute', borderRadius: '25px' }} >
+                    <Typography variant='h5' component="h5">Valores para ingresar:</Typography>
+                    <Typography variant='h6' component="h6">fede@gmail.com</Typography>
+                    <Typography variant='h6' component="h6">123456</Typography>
+                    <Typography variant='h6' component="h6">de nada! ;)</Typography>
+                </Box>
             </form>
         </AuthLayout>
     )

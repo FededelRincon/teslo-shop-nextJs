@@ -35,7 +35,7 @@ interface SeedData {
 export const initialData: SeedData = {
     users: [
         {
-            name: 'Fernando Herrera',
+            name: 'Federico del Rincon',
             email: 'fede@gmail.com',
             // password: bcrypt.hashSync('123456',10),  //asi da 10 vueltas
             password: bcrypt.hashSync('123456'),        // el standar es q de 10 vuelta

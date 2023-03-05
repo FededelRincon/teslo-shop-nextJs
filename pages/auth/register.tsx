@@ -138,6 +138,11 @@ const RegisterPage = () => {
 
                     </Grid>
                 </Box>
+                <Box sx={{ opacity: '0.5', marginTop: '20px', marginLeft: '8px', padding:'15px 20px 15px 20px', backgroundColor: '#8B0000', color: '#B5B2B2', position: 'absolute', borderRadius: '25px' }} >
+                    <Typography variant='h5' component="h5">Pereza de crear una cuenta?</Typography>
+                    <Typography variant='h6' component="h6">Ya hice una para pruebas</Typography>
+                    <Typography variant='h6' component="h6">Click en "ya tienes cuenta"</Typography>
+                </Box>
             </form>
         </AuthLayout>
     )
