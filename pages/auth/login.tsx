@@ -115,6 +115,14 @@ const LoginPage = () => {
                             </NextLink>
                         </Grid>
 
+                        {/* Volver al inicio */}
+                        <Grid item xs={12} display='flex' justifyContent='end'>
+                            <NextLink href={ '/' } passHref>
+                                <Link underline='always' >
+                                    Volver a Inicio
+                                </Link>
+                            </NextLink>
+                        </Grid>
 
                     </Grid>
                 </Box>
