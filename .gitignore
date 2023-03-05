@@ -2,6 +2,9 @@
 
 mongo/
 .env
+.env.development
+.env.production
+.env.template
 
 # dependencies
 /node_modules
